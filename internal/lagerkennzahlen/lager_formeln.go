@@ -1,8 +1,8 @@
-package lager_messzahlen
+package lagerkennzahlen
 
 import "fmt"
 
-func umschlagshäufigkeit(umsatz float64, druchschnittlicher_lagerbestand float64) (float64, error) {
+func Umschlagshäufigkeit(umsatz float64, druchschnittlicher_lagerbestand float64) (float64, error) {
 	if druchschnittlicher_lagerbestand == 0.0 || umsatz == 0.0 {
 		return 0.0, fmt.Errorf("Zero division error\n")
 	}
@@ -10,7 +10,7 @@ func umschlagshäufigkeit(umsatz float64, druchschnittlicher_lagerbestand float6
 	return umsatz/druchschnittlicher_lagerbestand, nil
 }
 
-func lagerdauer(lagerumschalg float64) (float64, error) {
+func Lagerdauer(lagerumschalg float64) (float64, error) {
 	if lagerumschalg == 0.0 {
 		return 0.0, fmt.Errorf("Zero division error\n")
 	}
@@ -18,7 +18,7 @@ func lagerdauer(lagerumschalg float64) (float64, error) {
 	return 360/lagerumschalg, nil
 }
 
-func druchschnittlicher_lagerbestand(jahresanfangsbestand float64, monatsbestände []float64) (float64, error) {
+func DruchschnittlicherLagerbestand(jahresanfangsbestand float64, monatsbestände []float64) (float64, error) {
 	if len(monatsbestände) < 1 {
 		return 0.0, fmt.Errorf("Keine monatsbestände\n")
 	}
@@ -35,7 +35,7 @@ func druchschnittlicher_lagerbestand(jahresanfangsbestand float64, monatsbestän
 	return lagerbestand/len(monatsbestände)+1, nil
 }
 
-func lagerzinssatz(jahreszins float64, lagerdauer float64) (float64, error) {
+func Lagerzinssatz(jahreszins float64, lagerdauer float64) (float64, error) {
 	if jahreszins == 0.0 || lagerdauer == 0.0 {
 		return 0.0, fmt.Errorf("Zero division error\n")
 	}
@@ -44,7 +44,7 @@ func lagerzinssatz(jahreszins float64, lagerdauer float64) (float64, error) {
 }
 
 // lagerbestand in Euro
-func lagerzinsen(lagerbestand float64, lagerzinssatz float64) (float64, error) {
+func Lagerzinsen(lagerbestand float64, lagerzinssatz float64) (float64, error) {
 	if lagerbestand == 0.0 || lagerzinssatz == 0.0 {
 		return 0.0, fmt.Errorf("Zero division error\n")
 	}
