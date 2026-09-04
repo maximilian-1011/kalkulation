@@ -1,8 +1,6 @@
 package bezugskalkulation
 
-import "fmt"
-
-// rabat in % like 5%
+// rabat in % like 5% will be converted into 0.05
 func ZielEinkaufsPreis(listenpreis float64, rabat float64) float64 {
 	if rabat == 0.0 {
 		return listenpreis
@@ -17,6 +15,7 @@ func ZielEinkaufsPreis(listenpreis float64, rabat float64) float64 {
 	return zieleinkaufspreis
 }
 
+// skonto in % like 5% will be converted into decimal 0.05
 func BarEinkaufsPreis(zieleinkaufspreis float64, skonto float64) float64 {
 	if skonto == 0.0 {
 		return zieleinkaufspreis
