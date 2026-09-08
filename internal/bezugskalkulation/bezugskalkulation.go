@@ -1,6 +1,9 @@
+// Package bezugskalkulation contains formulars for calculations regarding the aquisition of wares
 package bezugskalkulation
 
-// rabat in % like 5% will be converted into 0.05
+import "math"
+
+// ZielEinkaufsPreis expects rabat to be the % float like 5 not the decimal float 0.05
 func ZielEinkaufsPreis(listenpreis float64, rabat float64) float64 {
 	if rabat == 0.0 {
 		return listenpreis
@@ -8,14 +11,14 @@ func ZielEinkaufsPreis(listenpreis float64, rabat float64) float64 {
 
 	rabatInDecimal := rabat / 100.0
 
-	rabatInEuro := listenpreis * rabatInDecimal
+	rabatInEuro := math.Round((listenpreis*rabatInDecimal)*100) / 100
 
-	zieleinkaufspreis := listenpreis - rabatInEuro
+	zieleinkaufspreis := math.Round((listenpreis-rabatInEuro)*100) / 100
 
 	return zieleinkaufspreis
 }
 
-// skonto in % like 5% will be converted into decimal 0.05
+// BarEinkaufsPreis expects skonto to be the % flaot like 5 not the decimal float 0.05
 func BarEinkaufsPreis(zieleinkaufspreis float64, skonto float64) float64 {
 	if skonto == 0.0 {
 		return zieleinkaufspreis
@@ -23,9 +26,9 @@ func BarEinkaufsPreis(zieleinkaufspreis float64, skonto float64) float64 {
 
 	skontoInDecimal := skonto / 100.0
 
-	skontoInEuro := zieleinkaufspreis * skontoInDecimal
+	skontoInEuro := math.Round((zieleinkaufspreis*skontoInDecimal)*100) / 100
 
-	bareinkaufspreis := zieleinkaufspreis - skontoInEuro
+	bareinkaufspreis := math.Round((zieleinkaufspreis-skontoInEuro)*100) / 100
 
 	return bareinkaufspreis
 }

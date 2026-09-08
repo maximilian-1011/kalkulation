@@ -11,7 +11,7 @@ func startRepl() {
 	reader := bufio.NewScanner(os.Stdin)
 	commands := getCommands()
 	for {
-		fmt.Print("Kalkulation >")
+		fmt.Print("Kalkulation > ")
 		reader.Scan()
 		err := reader.Err()
 		if err != nil {
@@ -53,25 +53,55 @@ type cliCommand struct {
 
 func getCommands() map[string]cliCommand {
 	return map[string]cliCommand{
-		"bezugskalkulation": {
-			name:        "bezugskalkulation",
-			description: "Kombiniert Zieleinkaufspreis und Bareinkaufspreis mit bezugskosten",
-			callback:    commandBezugskalkulation,
-		},
-		"zieleinkaufspreis": {
-			name:        "zieleinkaufspreis",
-			description: "Listenpreis nach abzug von Rabat",
-			callback:    commandZieleinkaufspreis,
-		},
-		"bareinkaufspreis": {
-			name:        "bareinkaufspreis",
-			description: "Zieleinkaufspreis nach abzug von Skonto",
-			callback:    commandBareinkaufspreis,
-		},
-		"hilfe": {
-			name:        "hilfe",
+		"help": {
+			name:        "help",
 			description: "Zeigt alle möglichen Befehle an",
 			callback:    commandHelp,
+		},
+		"exit": {
+			name:        "exit",
+			description: "Schließt das Programm",
+			callback:    commandExit,
+		},
+		"bk": {
+			name:        "bk",
+			description: "Vollständige Bezugskalkulation",
+			callback:    commandBezugskalkulation,
+		},
+		"zek": {
+			name:        "zek",
+			description: "Zieleinkaufspreis. Listenpreis nach abzug von Rabat",
+			callback:    commandZieleinkaufspreis,
+		},
+		"bek": {
+			name:        "bek",
+			description: "Bareinkaufspreis. Zieleinkaufspreis nach abzug von Skonto",
+			callback:    commandBareinkaufspreis,
+		},
+		"us": {
+			name:        "us",
+			description: "Umschlagshäufigkeit",
+			callback:    commandUmschlagshäufigkeit,
+		},
+		"ld": {
+			name:        "ld",
+			description: "Lagerdauer",
+			callback:    commandLagerdauer,
+		},
+		"dsb": {
+			name:        "dsb",
+			description: "Durchschnittlicher Lagerbestand",
+			callback:    commandDurchschnittlicherLagerbestand,
+		},
+		"lzs": {
+			name:        "lzs",
+			description: "Lagerzinssatz",
+			callback:    commandLagerzinssatz,
+		},
+		"lz": {
+			name:        "lz",
+			description: "Lagerzins",
+			callback:    commandLagerzins,
 		},
 	}
 }
