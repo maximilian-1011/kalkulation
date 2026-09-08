@@ -33,7 +33,10 @@ func startRepl() {
 			}
 			continue
 		} else {
+			fmt.Println()
 			fmt.Println("Unbekannter Befehl")
+			fmt.Println("Gib 'help' ein für wietere Informationen")
+			fmt.Println()
 			continue
 		}
 	}

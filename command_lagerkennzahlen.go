@@ -17,7 +17,9 @@ func commandUmschlagshäufigkeit() error {
 	if err != nil {
 		return err
 	}
+	fmt.Println()
 	fmt.Printf("Das Ergebnis ist: %.2f\n", res)
+	fmt.Println()
 	return nil
 }
 
@@ -32,7 +34,9 @@ func commandLagerdauer() error {
 	if err != nil {
 		return err
 	}
+	fmt.Println()
 	fmt.Printf("Das Ergebnis ist: %.2f\n", res)
+	fmt.Println()
 	return nil
 }
 
@@ -56,7 +60,9 @@ func commandDurchschnittlicherLagerbestand() error {
 	if err != nil {
 		return err
 	}
+	fmt.Println()
 	fmt.Printf("Das Ergebnis ist: %.2f", res)
+	fmt.Println()
 	return nil
 }
 
@@ -71,7 +77,9 @@ func commandLagerzinssatz() error {
 	if err != nil {
 		return err
 	}
+	fmt.Println()
 	fmt.Printf("Das Ergebnis ist: %.2f\n", res)
+	fmt.Println()
 	return nil
 }
 
@@ -86,6 +94,8 @@ func commandLagerzins() error {
 	if err != nil {
 		return err
 	}
+	fmt.Println()
 	fmt.Printf("Das Ergebnis ist: %.2f\n", res)
+	fmt.Println()
 	return nil
 }

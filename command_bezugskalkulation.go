@@ -17,7 +17,9 @@ func commandBezugskalkulation() error {
 	}
 	zek := bezugskalkulation.ZielEinkaufsPreis(values["Listenpreis"], values["Rabatt"])
 	bek := bezugskalkulation.BarEinkaufsPreis(zek, values["Skonto"])
+	fmt.Println()
 	fmt.Printf("Das Ergebnis ist: %.2f€\n", bezugskalkulation.BezugsPreis(bek, values["Bezugskosten"]))
+	fmt.Println()
 	return nil
 }
 
@@ -28,7 +30,9 @@ func commandZieleinkaufspreis() error {
 		return err
 	}
 
+	fmt.Println()
 	fmt.Printf("Das Ergebins ist: %.2f€\n", bezugskalkulation.ZielEinkaufsPreis(values["Listenpreis"], values["Rabatt"]))
+	fmt.Println()
 	return nil
 }
 
@@ -39,7 +43,9 @@ func commandBareinkaufspreis() error {
 		return err
 	}
 
+	fmt.Println()
 	fmt.Printf("Das Ergebins ist: %.2f€\n", bezugskalkulation.BarEinkaufsPreis(bezugskalkulation.ZielEinkaufsPreis(values["Listenpreis"], values["Rabatt"]), values["Skonto"]))
+	fmt.Println()
 	return nil
 }
 
