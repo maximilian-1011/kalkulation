@@ -73,7 +73,7 @@ func getCommands() map[string]cliCommand {
 		},
 		"zek": {
 			name:        "zek",
-			description: "Zieleinkaufspreis. Listenpreis nach abzug von Rabat",
+			description: "Zieleinkaufspreis. Listenpreis nach abzug von Rabatt",
 			callback:    commandZieleinkaufspreis,
 		},
 		"bek": {
@@ -105,6 +105,21 @@ func getCommands() map[string]cliCommand {
 			name:        "lz",
 			description: "Lagerzins",
 			callback:    commandLagerzins,
+		},
+		"skp": {
+			name:        "skp",
+			description: "Selbstkostenpreis",
+			callback:    commandSelbstkostenpreis,
+		},
+		"nvp": {
+			name:        "nvp",
+			description: "Nettoverkaufspreis",
+			callback:    commandNettoVerkaufsPreis,
+		},
+		"bvp": {
+			name:        "bvp",
+			description: "Bruttoverkaufspreis",
+			callback:    commandBruttoVerkaufsPreis,
 		},
 	}
 }

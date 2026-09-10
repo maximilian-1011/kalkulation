@@ -49,6 +49,63 @@ func commandBareinkaufspreis() error {
 	return nil
 }
 
+func commandSelbstkostenpreis() error {
+	parms := []string{"Listenpreis", "Rabatt", "Skonto", "Bezugskosten", "Handlungskosten"}
+	values, err := getValues(parms)
+	if err != nil {
+		return err
+	}
+
+	zek := bezugskalkulation.ZielEinkaufsPreis(values["Listenpreis"], values["Rabatt"])
+	bek := bezugskalkulation.BarEinkaufsPreis(zek, values["Skonto"])
+	bk := bezugskalkulation.BezugsPreis(bek, values["Bezugskosten"])
+	res := bezugskalkulation.SelbstkostenPreis(bk, values["Handlungskosten"])
+
+	fmt.Println()
+	fmt.Printf("Das Erbebnis ist: %.2f€\n", res)
+	fmt.Println()
+	return nil
+}
+
+func commandNettoVerkaufsPreis() error {
+	parms := []string{"Listenpreis", "Rabatt", "Skonto", "Bezugskosten", "Handlungskosten", "Gewinnzuschlag"}
+	values, err := getValues(parms)
+	if err != nil {
+		return err
+	}
+
+	zek := bezugskalkulation.ZielEinkaufsPreis(values["Listenpreis"], values["Rabatt"])
+	bek := bezugskalkulation.BarEinkaufsPreis(zek, values["Skonto"])
+	bk := bezugskalkulation.BezugsPreis(bek, values["Bezugskosten"])
+	skp := bezugskalkulation.SelbstkostenPreis(bk, values["Handlungskosten"])
+	res := bezugskalkulation.NettoVerkaufsPreis(skp, values["Gewinnzuschlag"])
+
+	fmt.Println()
+	fmt.Printf("Das Erbebnis ist: %.2f€\n", res)
+	fmt.Println()
+	return nil
+}
+
+func commandBruttoVerkaufsPreis() error {
+	parms := []string{"Listenpreis", "Rabatt", "Skonto", "Bezugskosten", "Handlungskosten", "Gewinnzuschlag", "Umsatzsteuer"}
+	values, err := getValues(parms)
+	if err != nil {
+		return err
+	}
+
+	zek := bezugskalkulation.ZielEinkaufsPreis(values["Listenpreis"], values["Rabatt"])
+	bek := bezugskalkulation.BarEinkaufsPreis(zek, values["Skonto"])
+	bk := bezugskalkulation.BezugsPreis(bek, values["Bezugskosten"])
+	skp := bezugskalkulation.SelbstkostenPreis(bk, values["Handlungskosten"])
+	nvp := bezugskalkulation.NettoVerkaufsPreis(skp, values["Gewinnzuschlag"])
+	res := bezugskalkulation.BruttoVerkaufsPreis(nvp, values["Umsatzsteuer"])
+
+	fmt.Println()
+	fmt.Printf("Das Erbebnis ist: %.2f€\n", res)
+	fmt.Println()
+	return nil
+}
+
 func getValues(parms []string) (map[string]float64, error) {
 	scanner := bufio.NewScanner(os.Stdin)
 	values := make(map[string]float64)
