@@ -1,7 +1,10 @@
 // Package lagerkennzahlen contains the formulars to calculate the relevant values relating to storage
 package lagerkennzahlen
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func Umschlagshäufigkeit(umsatz float64, druchschnittlicherLagerbestand float64) (float64, error) {
 	if druchschnittlicherLagerbestand == 0.0 || umsatz == 0.0 {
@@ -58,4 +61,13 @@ func Meldebestand(mindestbestand, lieferzeit, abverkauf float64) (int, error) {
 	lieferbestand := lieferzeit * abverkauf
 	meldebestand := mindestbestand + lieferbestand
 	return int(meldebestand + 0.5), nil
+}
+
+func OptimaleBestellmenge(jahresbedarf, bestellkosten, produktwert, lagerkosten float64) (float64, error) {
+	lagerkostenDecimal := lagerkosten / 100
+	divident := 2 * jahresbedarf * bestellkosten
+	divisor := produktwert * lagerkostenDecimal
+	total := divident / divisor
+	res := math.Sqrt(total)
+	return res, nil
 }

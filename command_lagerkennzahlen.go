@@ -115,3 +115,19 @@ func commandMeldebestand() error {
 	fmt.Println()
 	return nil
 }
+
+func commandOptimaleBestellmenge() error {
+	parms := []string{"Jahresbestand in Stück", "Bestellkosten", "Produktwert in €", "Lagerkostensatz in %"}
+	values, err := getValues(parms)
+	if err != nil {
+		return err
+	}
+	res, err := lagerkennzahlen.OptimaleBestellmenge(values["Jahresbestand in Stück"], values["Bestellkosten"], values["Produktwert in €"], values["Lagerkostensatz in %"])
+	if err != nil {
+		return err
+	}
+	fmt.Println()
+	fmt.Printf("Das Ergebnis ist: %.2f\n", res)
+	fmt.Println()
+	return nil
+}

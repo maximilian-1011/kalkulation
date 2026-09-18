@@ -126,5 +126,10 @@ func getCommands() map[string]cliCommand {
 			description: "Meldebestand",
 			callback:    commandMeldebestand,
 		},
+		"obm": {
+			name:        "obm",
+			description: "Optimale Bestellmenge",
+			callback:    commandOptimaleBestellmenge,
+		},
 	}
 }
