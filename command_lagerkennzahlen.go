@@ -99,3 +99,19 @@ func commandLagerzins() error {
 	fmt.Println()
 	return nil
 }
+
+func commandMeldebestand() error {
+	parms := []string{"Mindestbestand", "Lieferzeit in Tagen", "Abverkauf/Tag"}
+	values, err := getValues(parms)
+	if err != nil {
+		return err
+	}
+	res, err := lagerkennzahlen.Meldebestand(values["Mindestbestand"], values["Lieferzeit in Tagen"], values["Abverkauf/Tag"])
+	if err != nil {
+		return err
+	}
+	fmt.Println()
+	fmt.Printf("Das Ergebnis ist: %d\n", res)
+	fmt.Println()
+	return nil
+}

@@ -52,3 +52,10 @@ func Lagerzinsen(lagerbestand float64, lagerzinssatz float64) (float64, error) {
 
 	return (lagerbestand * lagerzinssatz) / 100, nil
 }
+
+// Meldebestand geht von lieferzeit in ganzen Tagen und abverkauf pro Tag aus
+func Meldebestand(mindestbestand, lieferzeit, abverkauf float64) (int, error) {
+	lieferbestand := lieferzeit * abverkauf
+	meldebestand := mindestbestand + lieferbestand
+	return int(meldebestand + 0.5), nil
+}

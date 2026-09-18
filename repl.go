@@ -121,5 +121,10 @@ func getCommands() map[string]cliCommand {
 			description: "Bruttoverkaufspreis",
 			callback:    commandBruttoVerkaufsPreis,
 		},
+		"mb": {
+			name:        "mb",
+			description: "Meldebestand",
+			callback:    commandMeldebestand,
+		},
 	}
 }
