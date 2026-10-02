@@ -1,7 +1,10 @@
 // Package bezugskalkulation contains formulars for calculations regarding the aquisition of wares
 package bezugskalkulation
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 // ZielEinkaufsPreis expects rabatt to be the % float like 5 not the decimal float 0.05
 func ZielEinkaufsPreis(listenpreis, rabatt float64) float64 {
@@ -15,6 +18,7 @@ func ZielEinkaufsPreis(listenpreis, rabatt float64) float64 {
 
 	zieleinkaufspreis := math.Round((listenpreis-rabattInEuro)*100) / 100
 
+	fmt.Printf("Zieleinkaufspreis: %.2f\n", zieleinkaufspreis)
 	return zieleinkaufspreis
 }
 
@@ -30,6 +34,7 @@ func BarEinkaufsPreis(zieleinkaufspreis, skonto float64) float64 {
 
 	bareinkaufspreis := math.Round((zieleinkaufspreis-skontoInEuro)*100) / 100
 
+	fmt.Printf("Bareinkaufspreis: %.2f\n", bareinkaufspreis)
 	return bareinkaufspreis
 }
 
@@ -38,12 +43,13 @@ func BezugsPreis(bareinkaufspreis, bezugskosten float64) float64 {
 }
 
 func SelbstkostenPreis(bezugsPreis, handlungsKosten float64) float64 {
-	handlungsKostenProzent := (bezugsPreis / 100) * handlungsKosten
+	handlungsKostenDecimal := handlungsKosten / 100.0
 
-	handlungsKostenEuro := math.Round(handlungsKostenProzent*100) / 100
+	handlungsKostenEuro := math.Round((bezugsPreis*handlungsKostenDecimal)*100) / 100
 
 	selbstKostenPreis := bezugsPreis + handlungsKostenEuro
 
+	fmt.Printf("Selbstkostenpreis: %.2f\n", selbstKostenPreis)
 	return selbstKostenPreis
 }
 
@@ -54,6 +60,7 @@ func NettoVerkaufsPreis(selbstKostenPreis, gewinnZuschlag float64) float64 {
 
 	nettoVerkaufsPreis := selbstKostenPreis + gewinnZuschlagEuro
 
+	fmt.Printf("Nettoverkaufspreis: %.2f\n", nettoVerkaufsPreis)
 	return nettoVerkaufsPreis
 }
 
